@@ -1,1 +1,2 @@
-# Genetics_Project
+# cpp-template
+Template Repo

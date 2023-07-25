@@ -10,7 +10,6 @@
 # Ducument
 *.docx
 *.csv
-*.pdf
 
 # Object files
 *.o

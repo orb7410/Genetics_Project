@@ -1,0 +1,33 @@
+[
+    {
+      "gene": "SMN1",
+      "variant": "c.840C>T",
+      "info": "Pathogenic variant associated with spinal muscular atrophy (SMA)."
+    },
+    {
+      "gene": "SCN5A",
+      "variant": "p.R1193Q",
+      "info": "Common polymorphism with no significant cardiac disease association."
+    },
+    {
+      "gene": "CFH",
+      "variant": "c.1204C>T",
+      "info": "Pathogenic variant associated with age-related macular degeneration (AMD)."
+    },
+    {
+      "gene": "DMD",
+      "variant": "c.4534G>A",
+      "info": "Pathogenic variant leading to Duchenne muscular dystrophy (DMD)."
+    },
+    {
+      "gene": "KIT",
+      "variant": "p.D816V",
+      "info": "Frequent activating mutation found in gastrointestinal stromal tumors (GIST)."
+    },
+    {
+      "gene": "BRCA2",
+      "variant": "c.5946del",
+      "info": "Pathogenic variant associated with breast and ovarian cancer."
+    }
+]
+  

@@ -1,67 +1,88 @@
 #include <string>
 #include <vector>
-#include <cstdint>
-#include "data_base.hpp"
-#include "word_index.hpp"
-#include "link_data.hpp"
+
+#include "patient.hpp"
 
 namespace Genetics {
+namespace {
+bool isVarientExist(std::vector<std::string> const& a_geneVarients, std::string const& a_varient) 
+{
+    for (const auto& var : a_geneVarients) {
+        if(var == a_varient) {
+            return true;
+        }
+    }
 
-DataBase::DataBase()
-: m_wordIndex()
-, m_linkData()
+    return false;
+}
+} // empty namespace for static functions
+
+Patient::Patient()
+: m_name()
+, m_id()
+, m_gender()
+, m_cerringGenes()
 {
 
 }
 
-void DataBase::updateWordIndex(std::string const& a_word, std::string const& a_url, std::string const& a_title, uint32_t a_counter) 
+std::string Patient::getName() const noexcept
 {
-    m_wordIndex.setWordIndex(a_word, a_url, a_title, a_counter);
-}  
-
-void DataBase::updateLinksGraph(std::string const& a_url, std::map<std::string, uint32_t> const& a_linkData)
-{
-    m_linkData.updateLinkGraph(a_url, a_linkData);
+    return m_name.empty() ? "Unknown" : m_name;
 }
 
-void DataBase::updateExternalLinksCounter(uint32_t a_externalLinks)
+std::string Patient::getId() const noexcept 
 {
-    m_linkData.updateExternalLinksCounter(a_externalLinks);
+    return m_id.empty() ? "Unknown" : m_id;
 }
 
-void DataBase::updateVisitedLinksCounter() noexcept 
+std::string Patient::getGender() const noexcept
 {
-    m_linkData.updateVisitedLinksCounter();
+        switch (m_gender) {
+        case Gender::NOT_INITIALIZE: return "unknown";
+        case Gender::FEMALE: return "female";
+        case Gender::MALE: return "male";
+        default: return "unknown";
+    }
 }
 
-UrlTitleVec DataBase::getWordData(std::string const& a_word) const 
+std::string Patient::getVarients() const ///////////////fix
 {
-    return m_wordIndex.getIndexedWordData(a_word);
+    return m_name;
 }
 
-uint32_t DataBase::getWordsNumber() const
+void Patient::updateName(std::string const& a_name)
 {
-    return m_wordIndex.getNumOfWords();
+    m_name = a_name;
 }
 
-uint32_t DataBase::getWordUrlsNumber(std::string const& a_word) const
+void Patient::updateId(std::string const& a_id)
 {
-    return m_wordIndex.getNumWordOfUrls(a_word);
+    m_id = a_id;
 }
 
-uint32_t DataBase::getLinkgraphSize() const
+void Patient::updateGender(bool a_gender) 
 {
-    return m_linkData.getLinkgraphSize();
+    m_gender = (a_gender) ? Gender::MALE : Gender::FEMALE;
 }
 
-uint32_t DataBase::getExternalLinksCounter() const noexcept
+void Patient::updateGene(std::string const& a_gene, std::string const& a_varient) 
 {
-    return m_linkData.getExternalLinksCounter();
+    std::unordered_map<std::string, std::vector<std::string>>;
+
+    // check if the gene already exists
+    auto it = m_cerringGenes.find(a_gene);
+    if (it != m_cerringGenes.end()) {
+        // gene already exists, add the varient to its existing vector
+        if(!isVarientExist(it->second, a_varient)) {
+            it->second.push_back(a_varient);
+        }
+    } else {
+        // new gene, create new varients vector
+        std::vector<std::string> varientsVector;
+        varientsVector.push_back(a_varient);
+        m_cerringGenes.insert({a_varient, varientsVector});
+    }
 }
 
-uint32_t DataBase::getVisitedLinksCounter() const noexcept
-{
-    return m_linkData.getVisitedLinksCounter();
-}
-
-} // se
+} // Genetics

@@ -11,7 +11,7 @@ public:
 
     virtual std::string getName() const noexcept = 0;
     virtual std::string getId() const noexcept = 0;
-    virtual Gender getGender() const noexcept = 0;
+    virtual std::string getGender() const noexcept = 0;
     virtual std::string getVarients() const = 0;
 };
 

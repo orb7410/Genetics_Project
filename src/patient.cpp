@@ -38,7 +38,7 @@ std::string Patient::getId() const noexcept
 
 Gender Patient::getGender() const noexcept
 {
-        return m_gender;
+    return m_gender;
 }
 
 GenesVec Patient::getVarients() const 

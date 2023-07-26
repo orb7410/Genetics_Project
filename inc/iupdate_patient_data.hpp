@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <map>
 
+#include "common_types.hpp"
+
 namespace Genetics {
 
 class IUpdatePatientData {

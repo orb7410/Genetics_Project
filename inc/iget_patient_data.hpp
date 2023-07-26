@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdint>
 
+#include "common_types.hpp"
+
 namespace Genetics {
 
 class IGetPatientData {
@@ -11,8 +13,8 @@ public:
 
     virtual std::string getName() const noexcept = 0;
     virtual std::string getId() const noexcept = 0;
-    virtual std::string getGender() const noexcept = 0;
-    virtual std::string getVarients() const = 0;
+    virtual Gender getGender() const noexcept = 0;
+    virtual GenesVec getVarients() const = 0;
 };
 
 } // se

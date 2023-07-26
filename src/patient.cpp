@@ -36,19 +36,18 @@ std::string Patient::getId() const noexcept
     return m_id.empty() ? "Unknown" : m_id;
 }
 
-std::string Patient::getGender() const noexcept
+Gender Patient::getGender() const noexcept
 {
-        switch (m_gender) {
-        case Gender::NOT_INITIALIZE: return "unknown";
-        case Gender::FEMALE: return "female";
-        case Gender::MALE: return "male";
-        default: return "unknown";
-    }
+        return m_gender;
 }
 
-std::string Patient::getVarients() const ///////////////fix
+GenesVec Patient::getVarients() const 
 {
-    return m_name;
+    GenesVec genes;
+    for (auto const& gene : m_cerringGenes) {
+        genes.push_back(std::make_pair(gene.first, gene.second));
+    }
+    return genes;
 }
 
 void Patient::updateName(std::string const& a_name)
@@ -68,8 +67,6 @@ void Patient::updateGender(bool a_gender)
 
 void Patient::updateGene(std::string const& a_gene, std::string const& a_varient) 
 {
-    std::unordered_map<std::string, std::vector<std::string>>;
-
     // check if the gene already exists
     auto it = m_cerringGenes.find(a_gene);
     if (it != m_cerringGenes.end()) {

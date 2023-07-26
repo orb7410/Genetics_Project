@@ -2,15 +2,11 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <utility>
 
 #include "iupdate_patient_data.hpp"
 #include "iget_patient_data.hpp"
-
-enum class Gender {
-    NOT_INITIALIZE,
-    FEMALE,
-    MALE
-};
+#include "common_types.hpp"
 
 namespace Genetics {
 
@@ -23,8 +19,8 @@ public:
 
     std::string getName() const noexcept override;
     std::string getId() const noexcept override;
-    std::string getGender() const noexcept override;
-    std::string getVarients() const override;
+    Gender getGender() const noexcept override;
+    GenesVec getVarients() const override;
 
     void updateName(std::string const& a_name) override;
     void updateId(std::string const& a_id) override;
@@ -35,7 +31,7 @@ private:
     std::string m_name;
     std::string m_id;
     Gender m_gender; 
-    std::unordered_map<std::string, std::vector<std::string>> m_cerringGenes;
+    GenesMap m_cerringGenes;
 };
 
 } //Genetics

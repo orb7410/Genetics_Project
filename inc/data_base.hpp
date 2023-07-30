@@ -28,6 +28,7 @@ public:
 
 	bool isGeneExist(const std::string& a_geneName, const std::string& a_variant) const;  // i dont think we need it
 	std::string getGeneDetail(const std::string& a_geneName, const std::string& a_variant) const;
+	size_t getGenesSize(); // for tests
 
 private:
 	void loadData(const std::string& a_fileName);

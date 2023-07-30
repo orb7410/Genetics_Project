@@ -68,5 +68,9 @@ std::string DataBase::getGeneDetail(const std::string& a_geneName, const std::st
     return "";
 }
 
+size_t DataBase::getGenesSize()
+{
+	return m_genes.size();
+}
 
 } // namespace genetics

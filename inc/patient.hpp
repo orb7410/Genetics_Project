@@ -22,6 +22,7 @@ public:
     Gender getGender() const noexcept override;
     GenesVec getVarients() const override;
 
+   //there is class validator for input(not empty or illigal or not exsist)
     void updateName(std::string const& a_name) override;
     void updateId(std::string const& a_id) override;
     void updateGender(bool a_gender) override;

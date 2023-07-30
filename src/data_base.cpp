@@ -1,8 +1,8 @@
-#include "data_base.hpp"
 #include <jsoncpp/json/json.h>
 #include <iostream>
 #include <fstream>
 
+#include "data_base.hpp"
 #include "string_utils.hpp"
 namespace genetics {
 
@@ -91,3 +91,4 @@ size_t DataBase::getGenesSize()
 }
 
 } // namespace genetics
+

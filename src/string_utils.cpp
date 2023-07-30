@@ -1,10 +1,10 @@
 #include <algorithm>
 
 #include "string_utils.hpp"
-
 namespace genetics {
 
-std::string toLowercase(const std::string& a_string) {
+std::string toLowercase(const std::string& a_string)
+{
     std::string result(a_string);
     std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) {
         return std::tolower(c);
@@ -24,6 +24,5 @@ std::string removeSpaces(const std::string& a_string)
     return result;
 }
 
-
-
 } // namespace se
+

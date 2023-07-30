@@ -5,21 +5,21 @@
 
 BEGIN_TEST(test1)
     using namespace genetics;
-    std::string fileName = "genes.json";
-    DataBase db(fileName);
+    DataBase db("genes.json");
 
     std::string geneName = "SMN1";
     std::string variantNotation = "c.840C>T";
 
     std::string info = db.getGeneDetail(geneName, variantNotation);
 
-    if (!info.empty()) {
+	ASSERT_EQUAL(info, "Pathogenic variant associated with spinal muscular atrophy (SMA).");
+
+	if (!info.empty()) {
         std::cout << "Gene: " << geneName << ", Variant: " << variantNotation << ", Info: " << info << std::endl;
     } else {
         std::cout << "Gene and variant combination not found in the database." << std::endl;
     }
 
-    ASSERT_PASS();
 END_TEST
 
 TEST_SUITE(因果応報 [genetics])

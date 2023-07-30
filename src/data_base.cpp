@@ -9,7 +9,6 @@ DataBase::DataBase(const std::string& a_fileName)
 {
     loadData(a_fileName);
 }
-
 void DataBase::loadData(const std::string& a_fileName)
 {
     std::ifstream file(a_fileName);
@@ -21,16 +20,17 @@ void DataBase::loadData(const std::string& a_fileName)
     Json::Value json;
     file >> json;
 
-    const auto& genesJson = json["genes"];
+	const auto& genes = json["genes"];
 
-    for (const auto& geneJson : genesJson) {
-        const std::string geneName = geneJson["gene"].asString();
-        const std::string variant = geneJson["variant"].asString();
-        const std::string info = geneJson["info"].asString();
+    for (const auto& gene : genes) {
+        const std::string geneName = gene["gene"].asString();
+        const std::string variant = gene["variant"].asString();
+        const std::string info = gene["info"].asString();
 
         m_genes[std::make_pair(geneName, variant)] = info;
     }
 }
+
 
 bool DataBase::isGeneExist(const std::string& a_geneName, const std::string& a_variant) const
 {

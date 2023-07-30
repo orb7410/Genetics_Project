@@ -1,35 +1,34 @@
 {
     "genes": [   
         {
-        "gene": "SMN1",
-        "variant": "c.840C>T",
-        "info": "Pathogenic variant associated with spinal muscular atrophy (SMA)."
+            "gene": "smn1",
+            "variant": "c.840c>t",
+            "info": "pathogenic variant associated with spinal muscular atrophy (sma)."
         },
         {
-        "gene": "SCN5A",
-        "variant": "p.R1193Q",
-        "info": "Common polymorphism with no significant cardiac disease association."
+            "gene": "scn5a",
+            "variant": "p.r1193q",
+            "info": "common polymorphism with no significant cardiac disease association."
         },
         {
-        "gene": "CFH",
-        "variant": "c.1204C>T",
-        "info": "Pathogenic variant associated with age-related macular degeneration (AMD)."
+            "gene": "cfh",
+            "variant": "c.1204c>t",
+            "info": "pathogenic variant associated with age-related macular degeneration (amd)."
         },
         {
-        "gene": "DMD",
-        "variant": "c.4534G>A",
-        "info": "Pathogenic variant leading to Duchenne muscular dystrophy (DMD)."
+            "gene": "dmd",
+            "variant": "c.4534g>a",
+            "info": "pathogenic variant leading to duchenne muscular dystrophy (dmd)."
         },
         {
-        "gene": "KIT",
-        "variant": "p.D816V",
-        "info": "Frequent activating mutation found in gastrointestinal stromal tumors (GIST)."
+            "gene": "kit",
+            "variant": "p.d816v",
+            "info": "frequent activating mutation found in gastrointestinal stromal tumors (gist)."
         },
         {
-        "gene": "BRCA2",
-        "variant": "c.5946del",
-        "info": "Pathogenic variant associated with breast and ovarian cancer."
+            "gene": "brca2",
+            "variant": "c.5946del",
+            "info": "pathogenic variant associated with breast and ovarian cancer."
         }
     ]
 }
-  

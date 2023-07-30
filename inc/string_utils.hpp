@@ -1,0 +1,10 @@
+#pragma once
+
+#include <string>
+
+namespace genetics {
+
+std::string toLowercase(const std::string& a_string);
+std::string removeNoneLettersOrNumbers(const std::string& a_string);
+
+} // namespace se

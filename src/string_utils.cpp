@@ -12,17 +12,18 @@ std::string toLowercase(const std::string& a_string) {
     return result;
 }
 
-std::string removeNoneLettersOrNumbers(const std::string& a_string)
+std::string removeSpaces(const std::string& a_string)
 {
     std::string result(a_string);
     result.erase(
         std::remove_if(result.begin(), result.end(), [](unsigned char c) {
-            return !std::isalnum(c);
+            return std::isspace(c);
         }),
         result.end()
     );
     return result;
 }
+
 
 
 } // namespace se

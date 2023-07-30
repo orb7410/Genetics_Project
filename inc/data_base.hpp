@@ -16,8 +16,9 @@ namespace std {
 
 namespace genetics {
 
-// GeneMap is a unordered map : The key is pair of a gene and its mutation and the value is info on this mutation.
-using GenesMap = std::unordered_map<std::pair<std::string, std::string>, std::string>;
+// GeneMap is a unordered map : The key is pair of a gene and its variant and the value is info on this variant.
+using GeneAndVariant = std::pair<std::string, std::string>;
+using GenesMap = std::unordered_map<GeneAndVariant, std::string>;
 
 class DataBase {
 public:
@@ -26,15 +27,15 @@ public:
     DataBase& operator=(DataBase const& a_other) = delete;
     ~DataBase() = default;
 
-	bool isGeneExist(const std::string& a_geneName, const std::string& a_variant) const;  // i dont think we need it
-	std::string getGeneDetail(const std::string& a_geneName, const std::string& a_variant) const;
-	size_t getGenesSize(); // for tests
+	bool isGeneExist(const std::string& a_geneName, const std::string& a_variant) const;
+	std::string getGeneDetails(const std::string& a_geneName, const std::string& a_variant) const;
+	size_t numOfGenes() const; // for tests
 
 private:
 	void loadData(const std::string& a_fileName);
+	std::string findGene(const std::string& a_geneName, const std::string& a_variant) const;
 
 private:
-	std::string m_fileName;
 	GenesMap m_genes;
 };
 

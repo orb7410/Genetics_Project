@@ -7,7 +7,7 @@
 namespace genetics {
 
 namespace {
-	std::pair<std::string, std::string> inputValidator(const std::string& a_geneName, const std::string& a_variant)
+	GeneAndVariant inputValidator(const std::string& a_geneName, const std::string& a_variant)
 	{
     std::string geneName = toLowercase(a_geneName);
     geneName = removeSpaces(geneName);
@@ -17,10 +17,10 @@ namespace {
 
     return std::make_pair(geneName, variant);
 	}
+
 }
 
 DataBase::DataBase(const std::string& a_fileName)
-: m_fileName(a_fileName)
 {
     loadData(a_fileName);
 }
@@ -47,45 +47,37 @@ void DataBase::loadData(const std::string& a_fileName)
     }
 }
 
+std::string DataBase::findGene(const std::string& a_geneName, const std::string& a_variant) const
+{
+	if (a_geneName.empty() || a_variant.empty()) {
+		return "";
+	}
+
+	// create a key using the gene name and variant
+	std::pair<std::string, std::string> key = inputValidator(a_geneName, a_variant);
+
+	// check if the key exists in the map
+	auto it = m_genes.find(key);
+	if (it != m_genes.end()) {
+		return it->second;
+	}
+
+	// return an empty string if the key is not found
+	return "";
+}
 
 bool DataBase::isGeneExist(const std::string& a_geneName, const std::string& a_variant) const
 {
-	if(a_geneName.empty() || a_variant.empty()) {
-		return false;
-	}
-	// create a key using the gene name and variant
-
-    std::pair<std::string, std::string> key = inputValidator(a_geneName, a_variant);
-
-    // check if the key exists in the map
-    auto it = m_genes.find(key);
-    if (it != m_genes.end()) {
-        return true;
-    }
-
-    // return an empty string if the key is not found
-    return false;
+    return !findGene(a_geneName, a_variant).empty();
 }
 
-std::string DataBase::getGeneDetail(const std::string& a_geneName, const std::string& a_variant) const
+std::string DataBase::getGeneDetails(const std::string& a_geneName, const std::string& a_variant) const
 {
-    if(a_geneName.empty() || a_variant.empty()) {
-		return "";
-	}
-	// create a key using the gene name and variant
-    std::pair<std::string, std::string> key = inputValidator(a_geneName, a_variant);
-
-    // check if the key exists in the map
-    auto it = m_genes.find(key);
-    if (it != m_genes.end()) {
-        return it->second;
-    }
-
-    // return an empty string if the key is not found
-    return "";
+    return findGene(a_geneName, a_variant);
 }
 
-size_t DataBase::getGenesSize()
+
+size_t DataBase::numOfGenes() const
 {
 	return m_genes.size();
 }

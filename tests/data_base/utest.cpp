@@ -10,8 +10,8 @@ BEGIN_TEST(test_LoadData_ValidFile)
     using namespace genetics;
     DataBase db("genes.json");
 
-	ASSERT_THAT(db.getGenesSize() == 6);
-	ASSERT_THAT(db.getGenesSize() != 0);
+	ASSERT_THAT(db.numOfGenes() == 6);
+	ASSERT_THAT(db.numOfGenes() != 0);
 
 END_TEST
 
@@ -19,7 +19,7 @@ BEGIN_TEST(test_LoadData_InvalidFile)
     using namespace genetics;
     DataBase db("invalid_file.json");
 
-	ASSERT_THAT(db.getGenesSize() == 0);
+	ASSERT_THAT(db.numOfGenes() == 0);
 
 END_TEST
 
@@ -27,18 +27,18 @@ BEGIN_TEST(test_LoadData_EmptyFile)
     using namespace genetics;
     DataBase db("empty_file.json");
 
-	ASSERT_THAT(db.getGenesSize() == 0);
+	ASSERT_THAT(db.numOfGenes() == 0);
 
 END_TEST
 
-BEGIN_TEST(test_GetGeneDetail_ValidVariant)
+BEGIN_TEST(test_getGeneDetails_ValidVariant)
     using namespace genetics;
     DataBase db("genes.json");
 
     std::string geneName = "smn1";
     std::string variantNotation = "c.840c>t";
 
-    std::string info = db.getGeneDetail(geneName, variantNotation);
+    std::string info = db.getGeneDetails(geneName, variantNotation);
 
 	ASSERT_EQUAL(info, "pathogenic variant associated with spinal muscular atrophy (sma).");
 
@@ -51,14 +51,14 @@ BEGIN_TEST(test_GetGeneDetail_ValidVariant)
 END_TEST
 
 
-BEGIN_TEST(test_GetGeneDetail_NonExistingGene)
+BEGIN_TEST(test_getGeneDetails_NonExistingGene)
     using namespace genetics;
     DataBase db("genes.json");
 
     std::string geneName = "s2";
     std::string variantNotation = "c.840c>t";
 
-    std::string info = db.getGeneDetail(geneName, variantNotation);
+    std::string info = db.getGeneDetails(geneName, variantNotation);
 
 	ASSERT_THAT(info != "pathogenic variant associated with spinal muscular atrophy (sma).");
 	ASSERT_EQUAL(info, "");
@@ -71,14 +71,14 @@ BEGIN_TEST(test_GetGeneDetail_NonExistingGene)
 
 END_TEST
 
-BEGIN_TEST(test_GetGeneDetail_InvalidGene)
+BEGIN_TEST(test_getGeneDetails_InvalidGene)
     using namespace genetics;
     DataBase db("genes.json");
 
     std::string geneName = "";
     std::string variantNotation = "c.840c>t";
 
-    std::string info = db.getGeneDetail(geneName, variantNotation);
+    std::string info = db.getGeneDetails(geneName, variantNotation);
 
 	ASSERT_THAT(info != "pathogenic variant associated with spinal muscular atrophy (sma).");
 	ASSERT_EQUAL(info, "");
@@ -91,14 +91,14 @@ BEGIN_TEST(test_GetGeneDetail_InvalidGene)
 
 END_TEST
 
-BEGIN_TEST(test_GetGeneDetail_InvalidVariant)
+BEGIN_TEST(test_getGeneDetails_InvalidVariant)
     using namespace genetics;
     DataBase db("genes.json");
 
     std::string geneName = "smn1";
     std::string variantNotation = "";
 
-    std::string info = db.getGeneDetail(geneName, variantNotation);
+    std::string info = db.getGeneDetails(geneName, variantNotation);
 
 	ASSERT_THAT(info != "pathogenic variant associated with spinal muscular atrophy (sma).");
 	ASSERT_EQUAL(info, "");
@@ -169,14 +169,14 @@ BEGIN_TEST(test_IsGeneExist_InValidVariant)
 END_TEST
 
 
-BEGIN_TEST(test_GetGeneDetail_CaseInsensitive)
+BEGIN_TEST(test_getGeneDetails_CaseInsensitive)
     using namespace genetics;
     DataBase db("genes.json");
 
     std::string geneName = "sM n1";
     std::string variantNotation = "c.840c>t";
 
-    std::string info = db.getGeneDetail(geneName, variantNotation);
+    std::string info = db.getGeneDetails(geneName, variantNotation);
 	std::cout << info << std::endl;
 
 	ASSERT_EQUAL(info, "pathogenic variant associated with spinal muscular atrophy (sma).");
@@ -187,15 +187,15 @@ TEST_SUITE(因果応報 [genetics])
 	TEST(test_LoadData_InvalidFile)
 	TEST(test_LoadData_EmptyFile)
 
-    TEST(test_GetGeneDetail_ValidVariant)
-	TEST(test_GetGeneDetail_NonExistingGene)
-	TEST(test_GetGeneDetail_InvalidGene)
-	TEST(test_GetGeneDetail_InvalidVariant)
+    TEST(test_getGeneDetails_ValidVariant)
+	TEST(test_getGeneDetails_NonExistingGene)
+	TEST(test_getGeneDetails_InvalidGene)
+	TEST(test_getGeneDetails_InvalidVariant)
 
 	TEST(test_IsGeneExist_ValidVariant)
 	TEST(test_IsGeneExist_NonExistingGene)
 	TEST(test_IsGeneExist_InValidVariant)
 
-	TEST(test_GetGeneDetail_CaseInsensitive)
+	TEST(test_getGeneDetails_CaseInsensitive)
 
 END_SUITE

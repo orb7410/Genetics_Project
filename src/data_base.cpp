@@ -35,7 +35,7 @@ void DataBase::loadData(const std::string& a_fileName)
 bool DataBase::isGeneExist(const std::string& a_geneName, const std::string& a_variant) const
 {
 	if(a_geneName.empty() || a_variant.empty()) {
-		return "";
+		return false;
 	}
 	// create a key using the gene name and variant
     std::pair<std::string, std::string> key(a_geneName, a_variant);

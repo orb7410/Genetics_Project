@@ -12,7 +12,7 @@ CPPFLAGS += -I$(INCLUDES_DIR)
 INCLUDES_DIR = ../../inc
 SOURCES_DIR = ../../src
 
-OBJECTS = $(SOURCES_DIR)/data_base.cpp
+OBJECTS = $(SOURCES_DIR)/data_base.cpp $(SOURCES_DIR)/string_utils.cpp
 
 SOURCE = utest.cpp $(OBJECTS)
 TARGET = utest

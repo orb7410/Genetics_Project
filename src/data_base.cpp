@@ -2,13 +2,29 @@
 #include <jsoncpp/json/json.h>
 #include <iostream>
 #include <fstream>
+
+#include "string_utils.hpp"
 namespace genetics {
+
+namespace {
+	std::pair<std::string, std::string> inputValidator(const std::string& a_geneName, const std::string& a_variant)
+	{
+    std::string geneName = toLowercase(a_geneName);
+    geneName = removeSpaces(geneName);
+
+    std::string variant = toLowercase(a_variant);
+    variant = removeSpaces(variant);
+
+    return std::make_pair(geneName, variant);
+	}
+}
 
 DataBase::DataBase(const std::string& a_fileName)
 : m_fileName(a_fileName)
 {
     loadData(a_fileName);
 }
+
 void DataBase::loadData(const std::string& a_fileName)
 {
     std::ifstream file(a_fileName);
@@ -38,7 +54,8 @@ bool DataBase::isGeneExist(const std::string& a_geneName, const std::string& a_v
 		return false;
 	}
 	// create a key using the gene name and variant
-    std::pair<std::string, std::string> key(a_geneName, a_variant);
+
+    std::pair<std::string, std::string> key = inputValidator(a_geneName, a_variant);
 
     // check if the key exists in the map
     auto it = m_genes.find(key);
@@ -56,7 +73,7 @@ std::string DataBase::getGeneDetail(const std::string& a_geneName, const std::st
 		return "";
 	}
 	// create a key using the gene name and variant
-    std::pair<std::string, std::string> key(a_geneName, a_variant);
+    std::pair<std::string, std::string> key = inputValidator(a_geneName, a_variant);
 
     // check if the key exists in the map
     auto it = m_genes.find(key);

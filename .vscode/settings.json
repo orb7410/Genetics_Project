@@ -49,6 +49,20 @@
         "list": "cpp",
         "xhash": "cpp",
         "map": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "deque": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "string_view": "cpp",
+        "fstream": "cpp",
+        "numbers": "cpp"
     }
 }

@@ -1,23 +1,21 @@
-CXX= g++
-CC = $(CXX)
+$(CXX)=g++
+CC=CXX
 
-CXXFLAGS  = -pedantic -Wall -Werror -Wextra
-CXXFLAGS += -ggdb
-CXXFLAGS += -std=c++17
-
-LDLIBS = -ljsoncpp 
+CFLAGS = -pedantic -Wall -Werror
+CFLAGS += -ggdb
+LDLIBS = -ljsoncpp
+CXXFLAGS = $(CFLAGS) -std=c++17
 
 CPPFLAGS = -DDEBUG
-CPPFLAGS = -I$(INCLUDES_DIR) -I$(CURL_INCLUDES_DIR)
+CPPFLAGS += -I$(INCLUDES_DIR)
 
 INCLUDES_DIR = ../../inc
 SOURCES_DIR = ../../src
 
-SOURCE := utest.cpp \
-			$(SOURCES_DIR)/data_base.cpp \
-			$(SOURCES_DIR)/patient.cpp \
+OBJECTS = $(SOURCES_DIR)/get_patient_data.cpp $(SOURCES_DIR)/patient.cpp $(SOURCES_DIR)/update_patient_data.cpp
 
-TARGET := utest
+SOURCE = utest.cpp $(OBJECTS)
+TARGET = utest
 
 all: $(TARGET)
 
@@ -28,16 +26,12 @@ check : $(TARGET)
 
 recheck: clean check
 
-clang_check: CXX = clang++
-clang_check: check
-
 clean:
-	@$(RM) ./$(TARGET) *.o
+	@$(RM) -f ./$(TARGET) *.o
 
-vala: $(TARGET)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
-hell: $(TARGET)
-	valgrind  --tool=helgrind ./$(TARGET) 2> hell.txt
+.PHONY : make clean check recheck all
 
-.PHONY : make clean check recheck all vala hell
+make:
+	@echo 'Attend a maker faire'
+	@${TRUE}

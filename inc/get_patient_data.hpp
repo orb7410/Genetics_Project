@@ -14,8 +14,8 @@ public:
 
     std::string getName();
     std::string getId();
-    Gender getGender();
-    GenesVec getVarients();
+    bool getGender();
+    GenesVec getVariants();
 
 private:
     IGetPatientData& m_getter;

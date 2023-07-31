@@ -19,14 +19,14 @@ std::string GetPatientData::getId()
     return m_getter.getName();
 }
 
-Gender GetPatientData::getGender()
+bool GetPatientData::getGender()
 {
     return m_getter.getGender();   
 }
 
-GenesVec GetPatientData::getVarients()
+GenesVec GetPatientData::getVariants()
 {
-    return m_getter.getVarients();      
+    return m_getter.getVariants();      
 }
 
 

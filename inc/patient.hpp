@@ -19,19 +19,19 @@ public:
 
     std::string getName() const noexcept override;
     std::string getId() const noexcept override;
-    Gender getGender() const noexcept override;
-    GenesVec getVarients() const override;
+    bool getGender() const noexcept override;
+    GenesVec getVariants() const override;
 
    //there is class validator for input(not empty or illigal or not exsist)
     void updateName(std::string const& a_name) override;
     void updateId(std::string const& a_id) override;
     void updateGender(bool a_gender) override;
-    void updateGene(std::string const& a_gene, std::string const& a_varient) override;
+    void updateGene(std::string const& a_gene, std::string const& a_variant) override;
 
 private:
     std::string m_name;
     std::string m_id;
-    Gender m_gender; 
+    bool m_gender; 
     GenesMap m_cerringGenes;
 };
 

@@ -23,9 +23,8 @@ void UpdatePatientData::updateGender(bool a_gender)
     m_updater.updateGender(a_gender);   
 }
 
-void UpdatePatientData::updateGene(std::string const& a_gene, std::string const& a_varient)
+void UpdatePatientData::updateGene(std::string const& a_gene, std::string const& a_variant)
 {
-    m_updater.updateGene(a_gene, a_varient);   
+    m_updater.updateGene(a_gene, a_variant);   
 }
-
 } // namespace Genetics

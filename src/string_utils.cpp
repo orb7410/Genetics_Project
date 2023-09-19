@@ -16,13 +16,12 @@ std::string removeSpaces(const std::string& a_string)
 {
     std::string result;
     for (char c : a_string) {
-        if (std::isalnum(static_cast<unsigned char>(c))) {
+        if (!std::isspace(static_cast<unsigned char>(c))) {
             result += c;
         }
     }
     return result;
 }
-
 
 } // namespace se
 

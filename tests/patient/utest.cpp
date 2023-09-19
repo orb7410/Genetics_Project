@@ -26,7 +26,7 @@ BEGIN_TEST(Update_get_data)
     p.updateId(id);
     p.updateGender(gender);
 
-
+	
 	for (auto g : genes) {
 		if (g == "ABT") {
 			for (auto v : variant1) {
@@ -42,7 +42,7 @@ BEGIN_TEST(Update_get_data)
 			}
 		}
 	}
-
+	
 	ASSERT_EQUAL(p.getName(), name);
 	ASSERT_EQUAL(p.getId(), id);
 	ASSERT_EQUAL(p.getGender(), 0);
@@ -66,7 +66,7 @@ BEGIN_TEST(Update_get_data)
 		}
 		++i;
 	}
-
+	
 END_TEST
 
 BEGIN_TEST(get_data_no_update)

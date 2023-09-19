@@ -16,9 +16,9 @@ namespace std {
 
 namespace genetics {
 
-// GeneMap is a unordered map : The key is pair of a gene and its variant and the value is info on this variant.
-using GeneAndVariant = std::pair<std::string, std::string>;
+// GenesMap is a unordered map : The key is pair of a gene and its variant and the value is info on this variant.
 using GenesMap = std::unordered_map<GeneAndVariant, std::string>;
+using GeneAndVariant = std::pair<std::string, std::string>;
 
 class DataBase {
 public:

@@ -7,8 +7,8 @@
 namespace genetics {
 
 namespace {
-	GeneAndVariant inputValidator(const std::string& a_geneName, const std::string& a_variant)
-	{
+GeneAndVariant inputValidator(const std::string& a_geneName, const std::string& a_variant)
+{
     std::string geneName = toLowercase(a_geneName);
     geneName = removeSpaces(geneName);
 
@@ -16,9 +16,8 @@ namespace {
     variant = removeSpaces(variant);
 
     return std::make_pair(geneName, variant);
-	}
-
 }
+} // namespace
 
 DataBase::DataBase(const std::string& a_fileName)
 {

@@ -10,8 +10,8 @@ BEGIN_TEST(test_remove_none_letters)
     using namespace genetics;
     std::string word = "adaya tovim12";
     std::string word2 = " ada ya t!ovim1-2";
-    ASSERT_EQUAL(removeNoneLettersOrNumbers(word), "adayatovim12");
-    ASSERT_EQUAL(removeNoneLettersOrNumbers(word2), "adayatovim12");
+    ASSERT_EQUAL(removeSpaces(word), "adayatovim12");
+    ASSERT_EQUAL(removeSpaces(word2), "adayatovim12");
 
 END_TEST
 

@@ -14,15 +14,15 @@ std::string toLowercase(const std::string& a_string)
 
 std::string removeSpaces(const std::string& a_string)
 {
-    std::string result(a_string);
-    result.erase(
-        std::remove_if(result.begin(), result.end(), [](unsigned char c) {
-            return std::isspace(c);
-        }),
-        result.end()
-    );
+    std::string result;
+    for (char c : a_string) {
+        if (std::isalnum(static_cast<unsigned char>(c))) {
+            result += c;
+        }
+    }
     return result;
 }
+
 
 } // namespace se
 

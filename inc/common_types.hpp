@@ -5,7 +5,9 @@
 #include <utility>
 
 namespace Genetics {
+    //gene name: vec<mustations>
 using GenesMap = std::unordered_map<std::string, std::vector<std::string>>;
+
 using GenesVec = std::vector<std::pair<std::string, std::vector<std::string>>>;
 
 } //Genetics

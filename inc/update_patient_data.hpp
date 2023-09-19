@@ -15,7 +15,7 @@ public:
     void updateName(std::string const& a_name);
     void updateId(std::string const& a_id);
     void updateGender(bool a_gender);
-    void updateGene(std::string const& a_gene, std::string const& a_varient);
+    void updateGene(std::string const& a_gene, std::string const& a_variant);
 
 private:
     IUpdatePatientData& m_updater;

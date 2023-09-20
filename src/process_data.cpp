@@ -90,4 +90,3 @@ void generateSummaryLetter() const
 }
 
 } // namespace genetics
-

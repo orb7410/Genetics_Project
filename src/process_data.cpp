@@ -7,6 +7,7 @@
 #include <iomanip>
 
 #include "process_data.hpp"
+#include "common_types.hpp"
 
 namespace genetics {
 
@@ -24,19 +25,24 @@ std::string getCurrentDate()
 
 } // namespace
 
-void ProcessData::generateSummaryLetter(const DataBase& a_database)
+ProcessData::ProcessData(const DataBase& a_database, IGetPatientData& a_igetPatientData)
+: m_igetPatientData(a_igetPatientData)
+, m_dataBase(a_database)
 {
-    // Get patient information
-    std::string patientName ;
-    std::string patientID ;
-    std::string patientGender ;
-    std::vector<std::string> patientGenes = { "Gene1", "Gene2", "Gene3" };
-    //GetPatientData patientData(patientName, patientID, patientGender, patientGenes);
+}
 
-    // Create the summary letter
-    std::stringstream letter;
+void generateSummaryLetter() const
+{
+	// get patient information
+    std::string patientName = m_igetPatientData.getName();
+    std::string patientID = m_igetPatientData.getId();
+    std::string patientGender = m_igetPatientData.getGender();
+	//using GenesVec = std::vector<std::pair<std::string, std::vector<std::string>>>;
+    GenesVec patientGenes = m_igetPatientData.getVariants();;
 
-    letter << "Date: " << getCurrentDate() << "\n";
+	// Create the summary letter
+	std::stringstream letter;
+	letter << "Date: " << getCurrentDate() << "\n";
     letter << "Full Name: " << patientName << "\n";
     letter << "ID: " << patientID << "\n";
     letter << "Greetings,\n";
@@ -44,14 +50,22 @@ void ProcessData::generateSummaryLetter(const DataBase& a_database)
     letter << "We would like to summarize the results of the extended screening for carriers of hereditary diseases that you performed.\n\n";
     letter << "Below are the findings of your tests:\n";
 
-    for (size_t i = 0; i < patientGenes.size(); ++i) {
-        const std::string& gene = patientGenes[i];
-        std::string geneInfo = a_database.getGeneDetails(gene, /* Add the gene variant here */);
-        if (!geneInfo.empty()) {
-            letter << i + 1 << ". " << gene << " - " << geneInfo << "\n";
-        } else {
-            letter << i + 1 << ". " << gene << " - No information available\n";
-        }
+	for (size_t i = 0; i < patientGenes.size(); ++i) {
+		const std::string& geneName = patientGenes[i].first;
+    	const std::vector<std::string>& geneVariants = patientGenes[i].second;
+
+		for (const std::string& variant : geneVariants) {
+			letter << "   Gene: " << geneName << "\n";
+			letter << "   Variant: " << variant << "\n";
+
+			std::string geneInfo = m_dataBase.getGeneDetails(geneName, variant);
+
+			if (!geneInfo.empty()) {
+				letter << "   Info: " << geneInfo << "\n";
+			} else {
+				letter << "   Info: No information available\n";
+			}
+    	}
     }
 
     letter << "\nBest regards,\n\n";

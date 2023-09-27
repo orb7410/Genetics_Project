@@ -7,7 +7,6 @@
 #include <iomanip>
 
 #include "process_data.hpp"
-#include "common_types.hpp"
 
 namespace genetics {
 
@@ -25,13 +24,13 @@ std::string getCurrentDate()
 
 } // namespace
 
-ProcessData::ProcessData(const DataBase& a_database, IGetPatientData& a_igetPatientData)
+ProcessData::ProcessData(IGetPatientData& a_igetPatientData, const DataBase& a_database)
 : m_igetPatientData(a_igetPatientData)
 , m_dataBase(a_database)
 {
 }
 
-void generateSummaryLetter() const
+void ProcessData::generateSummaryLetter() const
 {
 	// get patient information
     std::string patientName = m_igetPatientData.getName();
@@ -90,3 +89,4 @@ void generateSummaryLetter() const
 }
 
 } // namespace genetics
+
